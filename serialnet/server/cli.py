@@ -17,16 +17,20 @@ def setup_logging():
 def main():
     setup_logging()
 
+
     parser = argparse.ArgumentParser(description="SerialNet Server")
     parser.add_argument("-p", "--port", required=True, help="Serial port (COM3, /dev/ttyUSB0)")
     parser.add_argument("-b", "--baud", type=int, default=115200)
-    parser.add_argument("-l","--listen", type=int, default=9000)
+    parser.add_argument("-l", "--listen", type=int, default=9000)
+    parser.add_argument("-H","--host", type=str, default="127.0.0.1", help="Listen host (default: 127.0.0.1)")
 
     args = parser.parse_args()
+
 
     server = SerialNetServer(
         port=args.port,
         baudrate=args.baud,
+        listen_host=args.host,
         listen_port=args.listen
     )
 

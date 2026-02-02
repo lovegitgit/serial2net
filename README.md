@@ -5,3 +5,43 @@ Serial over IP client/server tool.
 ## Install
 ```bash
 pip install serialnet
+```
+
+## Usage
+
+serialnet 提供了 ser-server 和 ser-client 两个命令行工具，实现串口与网络的桥接。
+
+
+### ser-server
+
+将本地串口通过 TCP/IP 网络暴露为服务端口。
+
+**参数：**
+- `-p`, `--port`：串口设备名（如 `COM3` 或 `/dev/ttyUSB0`）（必填）
+- `-b`, `--baud`：波特率，默认 115200
+- `-l`, `--listen`：监听端口，默认 9000
+- `-H`, `--host`：监听地址，默认 127.0.0.1
+
+**示例：**
+```bash
+ser-server -p COM3 -b 115200 -l 9000
+# 指定监听地址
+ser-server --port /dev/ttyUSB0 --baud 9600 --listen 9000 -H 0.0.0.0
+```
+
+### ser-client
+
+连接到 ser-server，将网络数据转发到本地标准输入输出。
+
+**参数：**
+- `-H`, `--host`：服务器地址（必填）
+- `-p`, `--port`：服务器端口，默认 9000
+
+**示例：**
+```bash
+ser-client -H 127.0.0.1 -p 9000
+# 或
+ser-client --host 192.168.1.100 --port 9000
+```
+
+连接后，输入会通过网络发送到串口，串口返回的数据会显示在终端。
