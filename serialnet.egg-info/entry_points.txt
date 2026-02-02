@@ -1,3 +1,0 @@
-[console_scripts]
-ser-client = serialnet.client.cli:main
-ser-server = serialnet.server.cli:main
