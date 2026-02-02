@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "serialnet"
+version = "0.1.0"
+description = "Serial over IP client/server tool"
+authors = [
+  { name="Your Name", email="you@example.com" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+dependencies = [
+  "pyserial>=3.5"
+]
+
+[project.scripts]
+ser-server = "serialnet.server.cli:main"
+ser-client = "serialnet.client.cli:main"
